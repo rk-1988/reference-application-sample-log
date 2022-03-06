@@ -1,0 +1,11 @@
+---
+applications:
+- name: spring-music-3
+  memory: 768M 
+  random-route: true
+  path: build/libs/spring-music.jar
+  buildpacks:
+    - https://github.com/cloudfoundry/java-buildpack/releases/download/v4.42/java-buildpack-v4.42.zip
+  services:
+    - elastic-apm-renewing-firefly
+

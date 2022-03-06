@@ -14,7 +14,7 @@ jobs:
           java-version: '8'
           distribution: 'adopt'
       - name: Build with Gradle
-        run: chmod +x ./gradlew build
+        run: chmod +x ./gradlew
       - name: Archive test report
         uses: actions/upload-artifact@v2
         with:

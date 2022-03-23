@@ -4,7 +4,7 @@ jobs:
   build:
     strategy:
       matrix:
-        os: [ubuntu-latest, windows-latest]
+        os: [ubuntu-latest]
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v2
@@ -33,7 +33,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2 
       - name: Deploy in cf
-        uses: rk-1988/reference-application-smaple-log@main
+        uses: rk-1988/reference-application-sample-log@main
         with: 
           API:      ${{ secrets.CF_API }}
           ORG:      ${{ secrets.CF_ORG }}

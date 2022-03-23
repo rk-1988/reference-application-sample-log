@@ -1,7 +1,7 @@
 name: Run build on push
 on: push
 jobs:
-  gradle:
+  build:
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest]
@@ -24,3 +24,21 @@ jobs:
           name: artifact
           #From this path
           path: 'build/libs/spring-music.jar'
+          
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    
+    steps: 
+      - name: Checkout
+        uses: actions/checkout@v2 
+      - name: Deploy in cf
+        uses: rk-1988/reference-application-smaple-log@main
+        with: 
+          API:      ${{ secrets.CF_API }}
+          ORG:      ${{ secrets.CF_ORG }}
+          SPACE:    ${{ secrets.CF_SPACE }}
+          USERNAME: ${{ secrets.CF_USERNAME }}
+          PASSWORD: ${{ secrets.CF_PASSWORD }}
+          MANIFEST: manifest.yml
+          VALIDATE: false  
